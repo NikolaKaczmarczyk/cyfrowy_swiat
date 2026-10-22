@@ -30,6 +30,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -37,6 +38,17 @@ body {
   font-size: 16px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at top left, rgba(120, 145, 122, 0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(196, 154, 104, 0.12), transparent 26%);
+  content: "";
+  pointer-events: none;
 }
 
 a {
@@ -86,6 +98,39 @@ textarea {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatOrbit {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -52%) rotate(6deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(120, 145, 122, 0);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(120, 145, 122, 0.22);
+  }
 }
 
 a:focus-visible,
@@ -142,14 +187,37 @@ summary:focus-visible {
 }
 
 .site-header nav a {
+  position: relative;
   color: var(--muted);
   font-size: 13px;
   font-weight: 550;
   transition: color .2s ease;
 }
 
-.site-header nav a:hover {
+.site-header nav a::after {
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--green);
+  opacity: 0;
+  transform: scaleX(0.6);
+  transform-origin: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  content: "";
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
   color: var(--deep);
+}
+
+.site-header nav a:hover::after,
+.site-header nav a:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 /* ---------------- Logo w sekcji HERO ---------------- */
@@ -193,11 +261,13 @@ summary:focus-visible {
 .brand-orbit-outer {
   width: 94%;
   border: 2px solid #D7DCCF;
+  animation: floatOrbit 9s ease-in-out infinite;
 }
 
 .brand-orbit-inner {
   width: 76%;
   border: 2px solid #AAB7A1;
+  animation: floatOrbit 11s ease-in-out infinite reverse;
 }
 
 .brand-orbit-dot {
@@ -313,19 +383,21 @@ summary:focus-visible {
   padding: 13px 23px;
   border: 1px solid var(--deep);
   border-radius: 999px;
-  background: var(--deep);
+  background: linear-gradient(135deg, var(--deep), #2b4739);
   color: white;
   cursor: pointer;
   font-size: 14px;
   font-weight: 650;
   line-height: 1.4;
   text-align: center;
-  transition: background .2s ease, transform .2s ease;
+  box-shadow: 0 10px 24px rgba(48, 74, 57, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
-  background: #243B2C;
+  box-shadow: 0 16px 30px rgba(48, 74, 57, 0.22);
+  filter: brightness(1.04);
 }
 
 .button-secondary {
@@ -597,14 +669,26 @@ summary:focus-visible {
   padding: 38px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 245, 239, 0.96));
   box-shadow: 0 8px 28px rgba(41, 55, 47, .035);
-  transition: transform .22s ease, box-shadow .22s ease;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.content-card::before {
+  position: absolute;
+  inset: auto auto -60px -35px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120, 145, 122, 0.15), transparent 70%);
+  content: "";
+  pointer-events: none;
 }
 
 .content-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+  border-color: rgba(120, 145, 122, 0.6);
+  box-shadow: 0 18px 34px rgba(41, 55, 47, 0.08);
 }
 
 .card-number {
@@ -687,6 +771,13 @@ summary:focus-visible {
   border: 1px solid rgba(77, 104, 83, .15);
   border-radius: 20px;
   background: rgba(255, 255, 255, .78);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.workshop-list li:hover {
+  transform: translateY(-2px);
+  border-color: rgba(120, 145, 122, 0.55);
+  box-shadow: 0 12px 28px rgba(48, 74, 57, 0.08);
 }
 
 .list-marker {
@@ -853,9 +944,9 @@ summary:focus-visible {
 }
 
 .faq-item summary {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: 20px;
   padding: 23px 2px;
   cursor: pointer;
@@ -864,6 +955,11 @@ summary:focus-visible {
   font-weight: 650;
   line-height: 1.5;
   list-style: none;
+  transition: color 0.2s ease;
+}
+
+.faq-item summary:hover {
+  color: var(--green-dark);
 }
 
 .faq-item summary::-webkit-details-marker {
@@ -874,7 +970,6 @@ summary:focus-visible {
   display: grid;
   width: 30px;
   height: 30px;
-  flex: 0 0 30px;
   place-items: center;
   border: 1px solid var(--border);
   border-radius: 50%;
@@ -882,7 +977,9 @@ summary:focus-visible {
   content: "+";
   font-size: 20px;
   font-weight: 400;
-  transition: transform .2s ease;
+  transition: transform .25s ease, background .25s ease;
+  justify-self: center;
+  align-self: center;
 }
 
 .faq-item[open] summary::after {
@@ -890,12 +987,26 @@ summary:focus-visible {
   background: var(--surface-green);
 }
 
+.faq-item[open] summary {
+  color: var(--green-dark);
+}
+
 .faq-item p {
   max-width: 760px;
+  max-height: 0;
   margin: 0;
-  padding: 0 45px 24px 2px;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 45px 0 2px;
   color: var(--muted);
   font-size: 14px;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding-bottom 0.3s ease;
+}
+
+.faq-item[open] p {
+  max-height: 260px;
+  opacity: 1;
+  padding: 0 45px 24px 2px;
 }
 /* ---------------- Kontakt i formularz ---------------- */
 
@@ -970,11 +1081,19 @@ summary:focus-visible {
   background: #FFFFFF;
   color: var(--text);
   font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .interest-form textarea {
   min-height: 110px;
   resize: vertical;
+}
+
+.interest-form input[type="email"]:focus,
+.interest-form textarea:focus {
+  border-color: rgba(184, 208, 183, 0.9);
+  box-shadow: 0 0 0 4px rgba(184, 208, 183, 0.18);
+  transform: translateY(-1px);
 }
 
 .interest-form input::placeholder,
@@ -996,7 +1115,7 @@ summary:focus-visible {
   display: flex;
   min-width: 0;
   min-height: 58px;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   padding: 13px 14px;
   border: 1px solid rgba(255, 255, 255, .16);
@@ -1027,8 +1146,9 @@ summary:focus-visible {
   width: 17px;
   height: 17px;
   flex: 0 0 17px;
-  margin: 2px 0 0;
+  margin: 0;
   accent-color: #B8D0B7;
+  transform: translateY(-1px);
 }
 
 .interest-form > .button {
