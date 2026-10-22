@@ -1,4 +1,3 @@
-
 /* ==================================================
    CYFROWY ŚWIAT PO LUDZKU
    Kompletny arkusz stylów
@@ -120,8 +119,6 @@ summary:focus-visible {
   backdrop-filter: blur(14px);
 }
 
-/* Nazwa marki w nagłówku */
-
 .site-header > .brand {
   flex-shrink: 0;
   color: var(--deep);
@@ -155,7 +152,6 @@ summary:focus-visible {
   color: var(--deep);
 }
 
-
 /* ---------------- Logo w sekcji HERO ---------------- */
 
 .hero-brand {
@@ -176,7 +172,6 @@ summary:focus-visible {
   font-family: inherit;
 }
 
-/* Dwa współśrodkowe okręgi */
 .brand-symbol {
   position: absolute;
   z-index: -1;
@@ -218,7 +213,6 @@ summary:focus-visible {
   transform: translateX(-50%);
 }
 
-/* Jasna karteczka */
 .brand-card {
   position: relative;
   box-sizing: border-box;
@@ -236,7 +230,6 @@ summary:focus-visible {
     0 12px 28px rgb(41 39 32 / 7%);
 }
 
-/* Nazwa marki */
 .brand__name {
   display: flex;
   flex-direction: column;
@@ -256,7 +249,6 @@ summary:focus-visible {
   color: var(--brand-sand);
 }
 
-/* Opis */
 .brand__tagline {
   margin: 13px 0 0;
   color: #716D64;
@@ -266,7 +258,6 @@ summary:focus-visible {
   letter-spacing: 0.005em;
 }
 
-/* Rozumiem. Potrafię. */
 .brand__method {
   display: flex;
   flex-wrap: wrap;
@@ -286,7 +277,6 @@ summary:focus-visible {
   background: var(--brand-sand);
 }
 
-/* Responsywność */
 @media (max-width: 480px) {
   .hero-brand {
     width: min(100%, 340px);
@@ -312,7 +302,6 @@ summary:focus-visible {
     font-size: 0.66rem;
   }
 }
-
 
 /* ---------------- Buttons ---------------- */
 
@@ -908,7 +897,6 @@ summary:focus-visible {
   color: var(--muted);
   font-size: 14px;
 }
-
 /* ---------------- Kontakt i formularz ---------------- */
 
 .section-contact {
@@ -994,21 +982,44 @@ summary:focus-visible {
   color: #879087;
 }
 
+/* Dwie kolumny opcji na większych ekranach */
 .checkbox-options,
 .radio-options {
   display: grid;
-  gap: 13px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
+/* Kafelki opcji formularza */
 .checkbox-options label,
 .radio-options label {
   display: flex;
+  min-width: 0;
+  min-height: 58px;
   align-items: flex-start;
-  gap: 11px;
-  color: rgba(255, 255, 255, .84);
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .045);
+  color: rgba(255, 255, 255, .88);
   cursor: pointer;
   font-size: 13px;
-  line-height: 1.55;
+  line-height: 1.5;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.checkbox-options label:hover,
+.radio-options label:hover {
+  border-color: rgba(198, 215, 198, .65);
+  background: rgba(255, 255, 255, .09);
+}
+
+/* Wizualne wyróżnienie wybranej opcji */
+.checkbox-options label:has(input:checked),
+.radio-options label:has(input:checked) {
+  border-color: #B8D0B7;
+  background: rgba(184, 208, 183, .13);
 }
 
 .checkbox-options input,
@@ -1324,6 +1335,12 @@ summary:focus-visible {
     padding: 23px 18px;
   }
 
+  /* Na telefonie opcje formularza jedna pod drugą */
+  .checkbox-options,
+  .radio-options {
+    grid-template-columns: 1fr;
+  }
+
   .section-contact {
     gap: 25px;
   }
@@ -1348,4 +1365,3 @@ summary:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
-
