@@ -1,6 +1,7 @@
+
 /* ==================================================
    CYFROWY ŚWIAT PO LUDZKU
-   Kompletny arkusz stylów
+   Kompletny arkusz stylów — wersja poprawiona
    ================================================== */
 
 :root {
@@ -118,6 +119,7 @@ a {
   100% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   50% {
     transform: translate(-50%, -52%) rotate(6deg);
   }
@@ -128,6 +130,7 @@ a {
   100% {
     box-shadow: 0 0 0 rgba(120, 145, 122, 0);
   }
+
   50% {
     box-shadow: 0 0 22px rgba(120, 145, 122, 0.22);
   }
@@ -174,6 +177,7 @@ summary:focus-visible {
 }
 
 .site-header nav {
+  min-width: 0;
   margin-left: auto;
 }
 
@@ -205,7 +209,7 @@ summary:focus-visible {
   opacity: 0;
   transform: scaleX(0.6);
   transform-origin: center;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity .2s ease, transform .2s ease;
   content: "";
 }
 
@@ -307,7 +311,7 @@ summary:focus-visible {
   font-size: clamp(1.55rem, 4vw, 2rem);
   font-weight: 500;
   line-height: 1.08;
-  letter-spacing: -0.055em;
+  letter-spacing: -.055em;
 }
 
 .brand__name strong {
@@ -322,10 +326,10 @@ summary:focus-visible {
 .brand__tagline {
   margin: 13px 0 0;
   color: #716D64;
-  font-size: 0.78rem;
+  font-size: .78rem;
   font-weight: 450;
   line-height: 1.6;
-  letter-spacing: 0.005em;
+  letter-spacing: .005em;
 }
 
 .brand__method {
@@ -335,9 +339,9 @@ summary:focus-visible {
   gap: 9px;
   margin-top: 19px;
   color: var(--brand-green-dark);
-  font-size: 0.7rem;
+  font-size: .7rem;
   font-weight: 700;
-  letter-spacing: 0.045em;
+  letter-spacing: .045em;
 }
 
 .brand__method-divider {
@@ -363,13 +367,13 @@ summary:focus-visible {
   }
 
   .brand__tagline {
-    font-size: 0.73rem;
+    font-size: .73rem;
   }
 
   .brand__method {
     gap: 7px;
     margin-top: 16px;
-    font-size: 0.66rem;
+    font-size: .66rem;
   }
 }
 
@@ -390,13 +394,13 @@ summary:focus-visible {
   font-weight: 650;
   line-height: 1.4;
   text-align: center;
-  box-shadow: 0 10px 24px rgba(48, 74, 57, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 10px 24px rgba(48, 74, 57, .18);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(48, 74, 57, 0.22);
+  box-shadow: 0 16px 30px rgba(48, 74, 57, .22);
   filter: brightness(1.04);
 }
 
@@ -669,7 +673,11 @@ summary:focus-visible {
   padding: 38px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 245, 239, 0.96));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, .98),
+    rgba(247, 245, 239, .96)
+  );
   box-shadow: 0 8px 28px rgba(41, 55, 47, .035);
   transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
@@ -680,15 +688,15 @@ summary:focus-visible {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(120, 145, 122, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(120, 145, 122, .15), transparent 70%);
   content: "";
   pointer-events: none;
 }
 
 .content-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(120, 145, 122, 0.6);
-  box-shadow: 0 18px 34px rgba(41, 55, 47, 0.08);
+  border-color: rgba(120, 145, 122, .6);
+  box-shadow: 0 18px 34px rgba(41, 55, 47, .08);
 }
 
 .card-number {
@@ -739,13 +747,63 @@ summary:focus-visible {
 
 .workshop-intro {
   max-width: 800px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   color: var(--muted);
   font-size: 17px;
+  line-height: 1.75;
 }
 
 .workshop-intro strong {
   color: var(--deep);
+}
+
+/*
+   Informacje o warsztacie:
+   Stacjonarnie w Krakowie
+   Jednorazowy warsztat
+   Udział niezależny od innych szkoleń
+*/
+
+.workshop-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 0 0 38px;
+  color: var(--green-dark);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.workshop-details span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid rgba(77, 104, 83, .18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .68);
+  color: var(--green-dark);
+  font-weight: 550;
+}
+
+/* Subtelny zielony punkt zamiast dekoracyjnych separatorów */
+.workshop-details span::before {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: var(--green);
+  content: "";
+}
+
+/* Wyłącz separator z poprzedniej wersji */
+.workshop-details span + span {
+  border-left: 1px solid rgba(77, 104, 83, .18);
 }
 
 .section-workshop > h3 {
@@ -767,17 +825,18 @@ summary:focus-visible {
   grid-template-columns: 43px minmax(0, 1fr);
   align-items: start;
   gap: 16px;
+  min-width: 0;
   padding: 25px;
   border: 1px solid rgba(77, 104, 83, .15);
   border-radius: 20px;
   background: rgba(255, 255, 255, .78);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
 .workshop-list li:hover {
   transform: translateY(-2px);
-  border-color: rgba(120, 145, 122, 0.55);
-  box-shadow: 0 12px 28px rgba(48, 74, 57, 0.08);
+  border-color: rgba(120, 145, 122, .55);
+  box-shadow: 0 12px 28px rgba(48, 74, 57, .08);
 }
 
 .list-marker {
@@ -796,6 +855,7 @@ summary:focus-visible {
   margin: 4px 0 10px;
   font-size: 17px;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .workshop-list p {
@@ -803,6 +863,7 @@ summary:focus-visible {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .workshop-outro {
@@ -955,7 +1016,7 @@ summary:focus-visible {
   font-weight: 650;
   line-height: 1.5;
   list-style: none;
-  transition: color 0.2s ease;
+  transition: color .2s ease;
 }
 
 .faq-item summary:hover {
@@ -1000,7 +1061,7 @@ summary:focus-visible {
   padding: 0 45px 0 2px;
   color: var(--muted);
   font-size: 14px;
-  transition: max-height 0.35s ease, opacity 0.25s ease, padding-bottom 0.3s ease;
+  transition: max-height .35s ease, opacity .25s ease, padding-bottom .3s ease;
 }
 
 .faq-item[open] p {
@@ -1008,6 +1069,7 @@ summary:focus-visible {
   opacity: 1;
   padding: 0 45px 24px 2px;
 }
+
 /* ---------------- Kontakt i formularz ---------------- */
 
 .section-contact {
@@ -1081,7 +1143,7 @@ summary:focus-visible {
   background: #FFFFFF;
   color: var(--text);
   font-size: 14px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 .interest-form textarea {
@@ -1091,8 +1153,8 @@ summary:focus-visible {
 
 .interest-form input[type="email"]:focus,
 .interest-form textarea:focus {
-  border-color: rgba(184, 208, 183, 0.9);
-  box-shadow: 0 0 0 4px rgba(184, 208, 183, 0.18);
+  border-color: rgba(184, 208, 183, .9);
+  box-shadow: 0 0 0 4px rgba(184, 208, 183, .18);
   transform: translateY(-1px);
 }
 
@@ -1102,6 +1164,7 @@ summary:focus-visible {
 }
 
 /* Dwie kolumny opcji na większych ekranach */
+
 .checkbox-options,
 .radio-options {
   display: grid;
@@ -1110,6 +1173,7 @@ summary:focus-visible {
 }
 
 /* Kafelki opcji formularza */
+
 .checkbox-options label,
 .radio-options label {
   display: flex;
@@ -1125,6 +1189,7 @@ summary:focus-visible {
   cursor: pointer;
   font-size: 13px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
   transition: border-color .2s ease, background .2s ease;
 }
 
@@ -1135,6 +1200,7 @@ summary:focus-visible {
 }
 
 /* Wizualne wyróżnienie wybranej opcji */
+
 .checkbox-options label:has(input:checked),
 .radio-options label:has(input:checked) {
   border-color: #B8D0B7;
@@ -1413,7 +1479,23 @@ summary:focus-visible {
     font-size: 15px;
   }
 
+  .workshop-details {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 28px;
+    font-size: 12px;
+  }
+
+  .workshop-details span {
+    min-height: 34px;
+    padding: 7px 10px;
+    border-radius: 9px;
+  }
+
   .workshop-list li {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 13px;
     padding: 20px;
   }
 
@@ -1456,6 +1538,7 @@ summary:focus-visible {
   }
 
   /* Na telefonie opcje formularza jedna pod drugą */
+
   .checkbox-options,
   .radio-options {
     grid-template-columns: 1fr;
@@ -1470,6 +1553,35 @@ summary:focus-visible {
     flex-direction: column;
     gap: 12px;
     padding: 25px 22px;
+  }
+}
+
+/* ---------------- Małe telefony ---------------- */
+
+@media (max-width: 380px) {
+  .workshop-details {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workshop-details span {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .hero {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .section {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .interest-form {
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
