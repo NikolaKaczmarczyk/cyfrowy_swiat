@@ -1276,7 +1276,7 @@ summary:focus-visible {
   padding: 0 45px 24px 2px;
 }
 
-/* ---------------- Kontakt i formularz ---------------- */
+/* ---------------- Kontakt ---------------- */
 
 .section-contact {
   display: grid;
@@ -1305,7 +1305,7 @@ summary:focus-visible {
   font-size: 16px;
 }
 
-.interest-form {
+.contact-card {
   min-width: 0;
   padding: 32px;
   border: 1px solid rgba(255, 255, 255, .15);
@@ -1313,130 +1313,34 @@ summary:focus-visible {
   background: rgba(255, 255, 255, .07);
 }
 
-.form-field {
-  min-width: 0;
-  margin: 0 0 27px;
-  padding: 0;
-  border: 0;
-}
-
-.form-field > label,
-.form-field legend {
-  display: block;
-  width: 100%;
-  margin-bottom: 11px;
-  color: rgba(255, 255, 255, .96);
-  font-size: 14px;
-  font-weight: 650;
-}
-
-.field-hint {
-  display: block;
-  margin-top: 5px;
-  color: rgba(255, 255, 255, .62);
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.interest-form input[type="email"],
-.interest-form textarea {
-  display: block;
-  width: 100%;
-  min-height: 50px;
-  padding: 13px 15px;
-  border: 1px solid rgba(255, 255, 255, .25);
-  border-radius: 11px;
-  background: #FFFFFF;
-  color: var(--text);
-  font-size: 14px;
-  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
-}
-
-.interest-form textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
-.interest-form input[type="email"]:focus,
-.interest-form textarea:focus {
-  border-color: rgba(184, 208, 183, .9);
-  box-shadow: 0 0 0 4px rgba(184, 208, 183, .18);
-  transform: translateY(-1px);
-}
-
-.interest-form input::placeholder,
-.interest-form textarea::placeholder {
-  color: #879087;
-}
-
-/* Dwie kolumny opcji na większych ekranach */
-
-.checkbox-options,
-.radio-options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-/* Kafelki opcji formularza */
-
-.checkbox-options label,
-.radio-options label {
-  display: flex;
-  min-width: 0;
-  min-height: 58px;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 14px;
-  border: 1px solid rgba(255, 255, 255, .16);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, .045);
-  color: rgba(255, 255, 255, .88);
-  cursor: pointer;
+.contact-card-label {
+  margin: 0 0 10px;
+  color: #C6D7C6;
   font-size: 13px;
-  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.contact-email {
+  color: white;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 700;
   overflow-wrap: anywhere;
-  transition: border-color .2s ease, background .2s ease;
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 215, 198, .55);
+  text-underline-offset: 5px;
 }
 
-.checkbox-options label:hover,
-.radio-options label:hover {
-  border-color: rgba(198, 215, 198, .65);
-  background: rgba(255, 255, 255, .09);
+.contact-email:hover {
+  color: #C6D7C6;
 }
 
-/* Wizualne wyróżnienie wybranej opcji */
-
-.checkbox-options label:has(input:checked),
-.radio-options label:has(input:checked) {
-  border-color: #B8D0B7;
-  background: rgba(184, 208, 183, .13);
-}
-
-.checkbox-options input,
-.radio-options input {
-  width: 17px;
-  height: 17px;
-  flex: 0 0 17px;
-  margin: 0;
-  accent-color: #B8D0B7;
-  transform: translateY(-1px);
-}
-
-.interest-form > .button {
-  width: 100%;
-  border-color: var(--surface-green);
-  background: var(--surface-green);
-  color: var(--deep);
-}
-
-.interest-form > .button:hover {
-  background: white;
-}
-
-.section-contact .form-note {
-  color: rgba(255, 255, 255, .65);
-  text-align: center;
+.contact-card-note {
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, .7);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /* ---------------- Stopka ---------------- */
@@ -1758,17 +1662,6 @@ summary:focus-visible {
     font-size: 13px;
   }
 
-  .interest-form {
-    padding: 23px 18px;
-  }
-
-  /* Na telefonie opcje formularza jedna pod drugą */
-
-  .checkbox-options,
-  .radio-options {
-    grid-template-columns: 1fr;
-  }
-
   .section-contact {
     gap: 25px;
   }
@@ -1804,10 +1697,6 @@ summary:focus-visible {
     padding-left: 18px;
   }
 
-  .interest-form {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
 }
 
 /* ---------------- Reduced motion ---------------- */
