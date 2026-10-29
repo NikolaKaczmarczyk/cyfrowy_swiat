@@ -1275,6 +1275,14 @@ summary:focus-visible {
   margin-bottom: 20px;
 }
 
+.about-name {
+  margin: -8px 0 12px;
+  color: var(--green-dark);
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -.02em;
+}
+
 .about-content h2 {
   margin-bottom: 28px;
 }
