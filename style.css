@@ -728,6 +728,10 @@ summary:focus-visible {
   min-width: 0;
 }
 
+.section-for-whom .section-copy {
+  padding-top: clamp(155px, 13vw, 185px);
+}
+
 .section-for-whom .section-heading ul {
   display: grid;
   gap: 12px;
@@ -801,6 +805,7 @@ summary:focus-visible {
 
 .comparison-card li {
   position: relative;
+  min-height: 3.1em;
   padding-left: 20px;
   color: var(--muted);
   font-size: 14px;
@@ -818,8 +823,31 @@ summary:focus-visible {
   content: "";
 }
 
-.section-why .section-copy .highlight-quote + .highlight-quote {
-  margin-top: 14px;
+.section-why-callout {
+  margin-top: 18px;
+  padding: 22px 24px;
+  border: 1px solid rgba(120, 145, 122, .3);
+  border-left: 4px solid var(--green);
+  border-radius: 16px;
+  background:
+    linear-gradient(120deg, rgba(232, 237, 228, .96), rgba(255, 255, 255, .86));
+  box-shadow: 0 8px 24px rgba(41, 55, 47, .06);
+}
+
+.section-why-callout-title {
+  margin: 0;
+  color: var(--deep);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+}
+
+.section-why-callout-description {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /* ---------------- Karty podejścia ---------------- */
@@ -1061,7 +1089,18 @@ summary:focus-visible {
 }
 
 .section-next .content-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   min-height: 250px;
+}
+
+.section-next .content-card p {
+  margin-bottom: 32px;
+}
+
+.section-next .content-card > .button {
+  margin-top: auto;
 }
 
 .section-next > .button {
@@ -1601,6 +1640,10 @@ summary:focus-visible {
   .section-contact {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+
+  .section-for-whom .section-copy {
+    padding-top: 0;
   }
 
   .section-intro .section-heading,
