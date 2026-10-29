@@ -114,14 +114,15 @@ a {
   }
 }
 
-@keyframes floatOrbit {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) rotate(0deg);
+@keyframes orbitLabels {
+  to {
+    transform: rotate(1turn);
   }
+}
 
-  50% {
-    transform: translate(-50%, -52%) rotate(6deg);
+@keyframes counterOrbitLabels {
+  to {
+    transform: translate(-50%, -50%) rotate(-1turn);
   }
 }
 
@@ -263,15 +264,73 @@ summary:focus-visible {
 }
 
 .brand-orbit-outer {
-  width: 94%;
+  width: 118%;
   border: 2px solid #D7DCCF;
-  animation: floatOrbit 9s ease-in-out infinite;
+}
+
+.brand-orbit-middle {
+  width: 100%;
+  border: 2px solid #BBC5B3;
 }
 
 .brand-orbit-inner {
-  width: 76%;
+  width: 82%;
   border: 2px solid #AAB7A1;
-  animation: floatOrbit 11s ease-in-out infinite reverse;
+}
+
+.brand-orbit-track {
+  --orbit-duration: 72s;
+  --orbit-delay: -9s;
+
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: orbitLabels var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.brand-orbit-middle .brand-orbit-track {
+  --orbit-duration: 84s;
+  --orbit-delay: -28s;
+}
+
+.brand-orbit-inner .brand-orbit-track {
+  --orbit-duration: 96s;
+  --orbit-delay: -60s;
+}
+
+.brand-orbit-label {
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 50%;
+  width: clamp(42px, 12%, 50px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #304A39;
+  border-radius: 50%;
+  background: #304A39;
+  box-shadow: 0 3px 10px rgb(41 39 32 / 22%);
+  color: #FBF9F4;
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  animation: counterOrbitLabels var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.brand-orbit-track .brand-orbit-label-code,
+.brand-orbit-track .brand-orbit-label-data {
+  top: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-orbit-track,
+  .brand-orbit-label {
+    animation: none;
+  }
 }
 
 .brand-orbit-dot {
@@ -292,16 +351,17 @@ summary:focus-visible {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  width: 78%;
-  padding: 27px 28px 24px;
+  width: 70%;
+  padding: 24px 20px;
   border: 2px solid var(--brand-border);
   border-radius: 18px;
   background: var(--brand-paper);
   box-shadow:
     0 3px 8px rgb(41 39 32 / 3%),
     0 12px 28px rgb(41 39 32 / 7%);
+  text-align: center;
 }
 
 .brand__name {
@@ -336,6 +396,7 @@ summary:focus-visible {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 9px;
   margin-top: 19px;
   color: var(--brand-green-dark);
@@ -357,7 +418,7 @@ summary:focus-visible {
   }
 
   .brand-card {
-    width: 81%;
+    width: 70%;
     padding: 22px 20px;
     border-radius: 10px;
   }
@@ -660,7 +721,7 @@ summary:focus-visible {
 }
 
 .section-for-whom {
-  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 2.5fr) minmax(0, 1.5fr);
 }
 
 .section-for-whom > * {
@@ -1448,12 +1509,6 @@ summary:focus-visible {
 
   .hero-brand-top {
     gap: 11px;
-  }
-
-  .brand-symbol {
-    width: 48px;
-    height: 50px;
-    flex-basis: 48px;
   }
 
   .brand__name {
